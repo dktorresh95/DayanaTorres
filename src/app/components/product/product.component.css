@@ -9,7 +9,7 @@
 tr:first-child
 {
   height: 50px;
-  background-color: var(--second-grey);
+  background-color: var(--second-gray);
   color: #474545;
 }
 tr {
@@ -17,12 +17,12 @@ tr {
     background-color: white;
 }
 tr td {
-    border-top: 1px solid grey;
+    border-top: 1px solid var(--border-color);
     text-align: center;
-    color: #1c1b1b;
+    color: var(--text);
 }
 .container-search {
-    background-color: var(--white-grey);
+    background-color: var(--white-gray);
     padding: 2em;
 }
 .container-table {
@@ -34,4 +34,11 @@ tr td {
     align-items: center;
     margin-top: 10px; 
     padding: 2em;
+}
+.actions{
+    display: flex;
+    justify-content: space-between;
+}
+.add {
+    margin: 0px;
 }

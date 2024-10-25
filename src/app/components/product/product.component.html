@@ -1,7 +1,10 @@
 
     <div class="container-search">
-        <input type="text" placeholder="Search">
-        <button class="button primary-button" (click)="addProduct()">Agregar</button>
+        <div class="actions">
+            <input type="text" placeholder="Search" (keydown.enter)="search($event)">
+            <button class="button primary-button add" (click)="addProduct()">Agregar</button>
+        </div>
+
         <div class="container-table">
             <table class="table-products">
                 <tr>
@@ -23,7 +26,7 @@
             </table>
 
             <div class="pagination">
-                <p>Resultados</p>
+                <p>{{productList.length}} Resultados</p>
                 <select>
                     <option>5</option>
                     <option>10</option>

@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --white-grey: #e3e1e1;
-    --second-grey: #eae7e7;
+    --white-gray: #e3e1e1;
+    --second-gray: #eae7e7;
+    --border-color: #727171;
+    --text: #585656;
     --primary-button: #eeea05;
-    --danger: #e70b00;
+    --danger: #de4242;
+    --title: #02024f;
 }
 
 .title {
@@ -14,14 +17,18 @@
 }
 h1{
     text-align: center;
+    color: var(--title);
 }
-input {
+input, input.ng-untouched.ng-pristine.ng-invalid {
     height: 30px;
     border-radius: 5px;
+    border-style: double;
+    border-color: var(--border-color);
 }
-input:invalid {
+input.ng-invalid {
    border-color: var(--danger);
 }
+
 .container-search {
     background-color: #e3e1e1;
     padding: 2em;
@@ -29,15 +36,18 @@ input:invalid {
 }
 .button {
     border-radius: 5px;
+    font-weight: 600;
     height: 30px;
     margin: 30px;
     cursor: pointer;
+    width: 8em;
 }
 .primary-button {
     background-color: var(--primary-button);
     border: var(--primary-button);
 }
 .secondary-button {
-    background-color: var(--white-grey);
-    border: var(--white-grey);
+    background-color: var(--white-gray);
+    border: var(--white-gray);
+    color: var(--title);
 }

@@ -32,4 +32,19 @@ export class ProductComponent implements OnInit {
   addProduct() {
     this.route.navigate(['/create-product'])
   }
+
+  search(event: any) {
+    const inputValue = event.target.value.toLowerCase();
+     if(inputValue){
+      this.productList = this.productList.filter(value => {
+        const nameMatch = value.name?.toLowerCase().includes(inputValue);
+        const descrMatch = value.description?.toLowerCase().includes(inputValue);
+        const dateRevisionMatch = value.date_revision?.toLowerCase().includes(inputValue);
+        const dateReleaseMatch = value.date_revision?.toLowerCase().includes(inputValue);
+        return nameMatch || descrMatch || dateReleaseMatch || dateRevisionMatch;
+      });
+     } else {
+      this.getProductList();
+     }
+  }
 }

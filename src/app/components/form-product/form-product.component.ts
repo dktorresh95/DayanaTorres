@@ -15,6 +15,18 @@ export class FormProductComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  addProduct() {
+    this.productService.addProducts(this.formGroup.value).subscribe(
+      (res) => {
+
+      }
+    )
+  }
+
+  initForm() {
     this.formGroup = this.formBuilder.group({
       id: ['',[ Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -26,11 +38,13 @@ export class FormProductComponent implements OnInit {
 
   }
 
-  addProduct() {
-    this.productService.addProducts(this.formGroup.value).subscribe(
-      (res) => {
-
-      }
-    )
+  hasErrorMinLength(label: string) {
+    return this.formGroup.get(label)?.hasError('minlength');
+  }
+  hasErrorMaxLength(label: string) {
+    return this.formGroup.get(label)?.hasError('maxlength');
+  }
+  isRequired(label: string) {
+    return this.formGroup.get(label)?.hasError('required') && this.formGroup.get(label)?.touched;
   }
 }
