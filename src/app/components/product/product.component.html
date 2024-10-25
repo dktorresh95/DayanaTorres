@@ -1,39 +1,32 @@
-
-    <div class="container-search">
-        <div class="actions">
-            <input type="text" placeholder="Search" (keydown.enter)="search($event)">
-            <button class="button primary-button add" (click)="addProduct()">Agregar</button>
-        </div>
-
-        <div class="container-table">
-            <table class="table-products">
-                <tr>
-                    <th>Logo</th>
-                    <th>Nombre del producto</th>
-                    <th>Descripción</th>
-                    <th>Fecha de liberación</th>
-                    <th>Fecha de reestructuración</th>
-                </tr>
-                <tr *ngFor="let product of productList">
-                    <td>{{product.logo}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.description}}</td>
-                    <td>{{product.date_release}}</td>
-                    <td>{{product.date_revision}}</td>
-                </tr>
-        
-        
-            </table>
-
-            <div class="pagination">
-                <p>{{productList.length}} Resultados</p>
-                <select>
-                    <option>5</option>
-                    <option>10</option>
-                    <option>15</option>
-                </select>
-            </div>
-        </div>
-
+<div class="container-search">
+    <div class="actions">
+        <input type="text" placeholder="Search" (keydown.enter)="search($event)">
+        <button class="button primary-button add" (click)="addProduct()">Agregar</button>
     </div>
-
+    <div class="container-table">
+        <table class="table-products">
+            <tr>
+                <th>Logo</th>
+                <th>Nombre del producto</th>
+                <th>Descripción</th>
+                <th>Fecha de liberación</th>
+                <th>Fecha de reestructuración</th>
+            </tr>
+            <tr *ngFor="let product of productList">
+                <td>{{product.logo}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.date_release}}</td>
+                <td>{{product.date_revision}}</td>
+            </tr>
+        </table>
+        <div class="pagination">
+            <p>{{productList.length}} Resultados</p>
+            <button [disabled]="currentPage === 1" class="button secondary-button"
+                (click)="goToPage(currentPage - 1)">Anterior</button>
+            <span>Página {{ currentPage }} de {{ totalPages }}</span>
+            <button [disabled]="currentPage === totalPages" class="button secondary-button"
+                (click)="goToPage(currentPage + 1)">Siguiente</button>
+        </div>
+    </div>
+</div>

@@ -10,8 +10,11 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
+  itemsPerPage = 5;
+  currentPage = 1;
   productList: Product[] = [];
+  totalPages = Math.ceil(this.productList.length / this.itemsPerPage) == 0 ? 1 : Math.ceil(this.productList.length / this.itemsPerPage);
+
   constructor(private productService: ProductService, private route: Router) { }
 
   ngOnInit(): void {
@@ -46,5 +49,14 @@ export class ProductComponent implements OnInit {
      } else {
       this.getProductList();
      }
+  }
+
+  get paginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.productList.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
   }
 }

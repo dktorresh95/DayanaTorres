@@ -21,15 +21,15 @@ h1{
 }
 input, input.ng-untouched.ng-pristine.ng-invalid, input[type="date"] {
     height: 30px;
+    width: 70%;
     border-radius: 5px;
     border-style: double;
     border-color: var(--border-color);
 }
-input[type="date"] {
-    width: 95%;
-}
+
 input.ng-invalid {
    border-color: var(--danger);
+   font-size: 0.875rem;
 }
 
 .container-search {
@@ -44,6 +44,10 @@ input.ng-invalid {
     margin: 30px;
     cursor: pointer;
     width: 8em;
+}
+.button:disabled {
+    color: var(--text);
+    cursor: no-drop;
 }
 .primary-button {
     background-color: var(--primary-button);

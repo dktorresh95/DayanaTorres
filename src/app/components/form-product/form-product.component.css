@@ -1,10 +1,11 @@
 .container-form{
     background-color: white;
-    padding: 10em;
+    padding: 2em;
 }
 .form-group {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .group-button {
     display: flex;
@@ -12,6 +13,7 @@
 }
 .container-input {
     margin-bottom: 15px;
+    flex: 1 1 45%;
 }
 
 label, span {

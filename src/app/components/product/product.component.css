@@ -30,7 +30,7 @@ tr td {
 }
 .pagination {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     margin-top: 10px; 
     padding: 2em;
