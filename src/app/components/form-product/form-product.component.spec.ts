@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormProductComponent } from './form-product.component';
 import { ProductService } from '../../services/product.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('FormProductComponent', () => {
   let component: FormProductComponent;
@@ -10,7 +11,7 @@ describe('FormProductComponent', () => {
   
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
       declarations: [FormProductComponent],
       providers: [ProductService],
     }).compileComponents();
@@ -22,5 +23,14 @@ describe('FormProductComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  
+  it('should create the form with controls', () => {
+    expect(component.formGroup.contains('id')).toBeTruthy();
+    expect(component.formGroup.contains('name')).toBeTruthy();
+    expect(component.formGroup.contains('description')).toBeTruthy();
+    expect(component.formGroup.contains('logo')).toBeTruthy();
+    expect(component.formGroup.contains('date_revision')).toBeTruthy();
+    expect(component.formGroup.contains('date_release')).toBeTruthy();
   });
 });
