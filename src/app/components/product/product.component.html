@@ -13,7 +13,7 @@
                 <th>Fecha de reestructuración</th>
             </tr>
             <tr *ngFor="let product of paginatedItems">
-                <td>{{product.logo}}</td>
+                <td><img [src]="product.logo"></td>
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_release}}</td>
