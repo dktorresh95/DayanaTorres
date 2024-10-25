@@ -1,0 +1,23 @@
+.container-form{
+    background-color: white;
+    padding: 10em;
+}
+.form-group {
+    display: flex;
+    justify-content: space-around;
+}
+.group-button {
+    display: flex;
+    justify-content: center;
+}
+.container-input {
+    margin-bottom: 15px;
+}
+
+label, span {
+    display: block;
+    margin-bottom: 5px;
+}
+span.invalid-input {
+    color: var(--danger);
+}

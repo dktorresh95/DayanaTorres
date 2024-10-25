@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --white-grey: #e3e1e1;
+    --second-grey: #eae7e7;
+    --primary-button: #eeea05;
+    --danger: #e70b00;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+input {
+    height: 30px;
+    border-radius: 5px;
+}
+input:invalid {
+   border-color: var(--danger);
+}
+.container-search {
+    background-color: #e3e1e1;
+    padding: 2em;
+    height: 100vh;
+}
+.button {
+    border-radius: 5px;
+    height: 30px;
+    margin: 30px;
+    cursor: pointer;
+}
+.primary-button {
+    background-color: var(--primary-button);
+    border: var(--primary-button);
+}
+.secondary-button {
+    background-color: var(--white-grey);
+    border: var(--white-grey);
+}

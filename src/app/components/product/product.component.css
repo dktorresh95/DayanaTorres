@@ -1,14 +1,3 @@
-.title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-input {
-    height: 30px;
-    border-radius: 5px;
-}
 
 .table-products {
     margin-top: 20px;
@@ -20,7 +9,7 @@ input {
 tr:first-child
 {
   height: 50px;
-  background-color: #eae7e7;
+  background-color: var(--second-grey);
   color: #474545;
 }
 tr {
@@ -33,7 +22,7 @@ tr td {
     color: #1c1b1b;
 }
 .container-search {
-    background-color: #e3e1e1;
+    background-color: var(--white-grey);
     padding: 2em;
 }
 .container-table {
