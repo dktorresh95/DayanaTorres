@@ -4,6 +4,7 @@
     </div>
     <div class="container-search">
         <input type="string" placeholder="Search">
+        <button (click)="addProduct()">Agregar</button>
         <div class="container-table">
             <table class="table-products">
                 <tr>
@@ -13,13 +14,12 @@
                     <th>Fecha de liberación</th>
                     <th>Fecha de reestructuración</th>
                 </tr>
-                <tr>
-                    <td>loguito</td>
-                    <td>loguito</td>
-                    <td>loguito</td>
-                    <td>loguito</td>
-                    <td>loguito</td>
-
+                <tr *ngFor="let product of productList">
+                    <td>{{product.logo}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.date_release}}</td>
+                    <td>{{product.date_revision}}</td>
                 </tr>
         
         
