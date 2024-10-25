@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/models/product.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-product',
@@ -12,7 +14,7 @@ export class FormProductComponent implements OnInit {
 
   formGroup: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService) {
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private spinner: NgxSpinnerService) {
 
   }
   ngOnInit(): void {
@@ -20,9 +22,16 @@ export class FormProductComponent implements OnInit {
   }
 
   addProduct() {
+    this.spinner.show();
     this.productService.addProducts(this.formGroup.value).subscribe(
       (res) => {
-
+        Swal.fire({
+          title: "Información",
+          text: "Se ha añadido correctamente el registro",
+          icon: "success"
+        });
+        this.spinner.hide();
+        this.initForm();
       }
     )
   }

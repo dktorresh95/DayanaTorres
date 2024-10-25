@@ -12,7 +12,7 @@
                 <th>Fecha de liberación</th>
                 <th>Fecha de reestructuración</th>
             </tr>
-            <tr *ngFor="let product of productList">
+            <tr *ngFor="let product of paginatedItems">
                 <td>{{product.logo}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>

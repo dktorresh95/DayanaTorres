@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
     this.productService.getproducts().subscribe(
       (response: ResponseData) => {
         this.productList = response.data || [];
+        this.totalPages = Math.ceil(this.productList.length / this.itemsPerPage);
       }
     )
   }
@@ -46,6 +47,7 @@ export class ProductComponent implements OnInit {
         const dateReleaseMatch = value.date_revision?.toLowerCase().includes(inputValue);
         return nameMatch || descrMatch || dateReleaseMatch || dateRevisionMatch;
       });
+      this.totalPages = Math.ceil(this.productList.length / this.itemsPerPage);
      } else {
       this.getProductList();
      }
