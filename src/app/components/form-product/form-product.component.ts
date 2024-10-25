@@ -32,8 +32,8 @@ export class FormProductComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
       logo: ['', Validators.required],
-      date_revision: ['', Validators.required],
-      date_release: ['', Validators.required]
+      date_revision: ['', [Validators.required, this.validateDate.bind(this)]],
+      date_release: ['', [Validators.required, this.validateDate.bind(this)]],
     });
 
   }
@@ -46,5 +46,14 @@ export class FormProductComponent implements OnInit {
   }
   isRequired(label: string) {
     return this.formGroup.get(label)?.hasError('required') && this.formGroup.get(label)?.touched;
+  }
+
+  isValidDate(label: string) {
+    return this.formGroup.get(label)?.errors?.['invalidDate'];
+  }
+  validateDate(dateSelected: any) {
+    const currentDate = new Date();
+    const dateInput = new Date(dateSelected.value);
+    return dateInput > currentDate ? null : { invalidDate: true };
   }
 }

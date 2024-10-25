@@ -19,11 +19,14 @@ h1{
     text-align: center;
     color: var(--title);
 }
-input, input.ng-untouched.ng-pristine.ng-invalid {
+input, input.ng-untouched.ng-pristine.ng-invalid, input[type="date"] {
     height: 30px;
     border-radius: 5px;
     border-style: double;
     border-color: var(--border-color);
+}
+input[type="date"] {
+    width: 95%;
 }
 input.ng-invalid {
    border-color: var(--danger);

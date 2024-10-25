@@ -35,13 +35,15 @@
             <div class="form-group">
                 <div class="container-input">
                     <label for="fechaliberacion">Fecha liberación</label>
-                    <input type="text" id="fechaliberacion" formControlName="date_release">
+                    <input type="date" id="fechaliberacion" formControlName="date_release">
                     <span  class="invalid-input"  *ngIf="isRequired('date_release')">Este campo es requerido</span>
+                    <span  [class.invalid-input]="formGroup.get('date_revision')?.touched"  *ngIf="isValidDate('date_release')">La fecha debe ser superior a la fecha actual</span>
                 </div>
                 <div class="container-input">
                     <label for="fecharevision">Fecha revisión</label>
-                    <input type="text" id="fecharevision" formControlName="date_revision">
+                    <input type="date" id="fecharevision" formControlName="date_revision">
                     <span  class="invalid-input"  *ngIf="isRequired('date_revision')">Este campo es requerido</span>
+                    <span  [class.invalid-input]="formGroup.get('date_revision')?.touched"  *ngIf="isValidDate('date_revision')">La fecha debe ser superior a la fecha actual</span>
                 </div>
             </div>
 
