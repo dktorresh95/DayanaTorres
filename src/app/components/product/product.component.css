@@ -1,0 +1,48 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+input {
+    height: 30px;
+    border-radius: 5px;
+}
+
+.table-products {
+    margin-top: 20px;
+    width: 100%;
+    overflow-y: auto;
+    padding: 2em;
+}
+
+tr:first-child
+{
+  height: 50px;
+  background-color: #eae7e7;
+  color: #474545;
+}
+tr {
+    height: 50px;
+    background-color: white;
+}
+tr td {
+    border-top: 1px solid grey;
+    text-align: center;
+    color: #1c1b1b;
+}
+.container-search {
+    background-color: #e3e1e1;
+    padding: 2em;
+}
+.container-table {
+    background-color: white;
+}
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px; 
+    padding: 2em;
+}
