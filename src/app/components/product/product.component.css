@@ -27,6 +27,8 @@ tr td {
 }
 .container-table {
     background-color: white;
+    overflow-x: auto;
+    margin-top: 20px;
 }
 .pagination {
     display: flex;
@@ -38,6 +40,8 @@ tr td {
 .actions{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
 }
 .add {
     margin: 0px;
