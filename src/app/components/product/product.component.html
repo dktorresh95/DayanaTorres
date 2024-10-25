@@ -21,7 +21,7 @@
             </tr>
         </table>
         <div class="pagination">
-            <p>{{productList.length}} Resultados</p>
+            <p>{{paginatedItems.length}} Resultados</p>
             <button [disabled]="currentPage === 1" class="button secondary-button"
                 (click)="goToPage(currentPage - 1)">Anterior</button>
             <span>Página {{ currentPage }} de {{ totalPages }}</span>
