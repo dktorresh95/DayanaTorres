@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
-import { ResponseData } from 'src/app/models/response.model';
+import { MessageResponse, ResponseData } from 'src/app/models/response.model';
 import { ProductService } from '../../services/product.service';
 import Swal from 'sweetalert2';
 
@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   currentPage = 1;
   productList: Product[] = [];
   totalPages = 0;
+  isDropdownOpen: number | null = null;
 
   constructor(private productService: ProductService, private route: Router) { }
 
@@ -91,6 +92,54 @@ export class ProductComponent implements OnInit {
     return Math.ceil(this.productList.length / this.itemsPerPage);
   }
 
+  showConfirm(id:string | undefined) {
+    Swal.fire({
+      title: "Está seguro de eliminar el registro?",
+      showDenyButton: true,
+      showCancelButton: false,
+      showCloseButton: true,
+      confirmButtonText: "Confirmar",
+      confirmButtonColor: "#eeea05",
+      cancelButtonText: `Cancelar`,
+      cancelButtonColor: "#e3e1e1",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(id)
+      } else if (result.isDismissed) {
+        Swal.close();
+      }
+    });
+  }
+
+  delete(id:string | undefined) {
+    this.productService.deleteProduct(id).subscribe( (res: MessageResponse) => {
+      Swal.fire({
+        title: "Información",
+        text: res.message,
+        icon: "success"
+      });
+      this.getProductList();
+    },
+    err => {
+      Swal.fire({
+        title: "Error",
+        text: err,
+        icon: "error"
+      });
+    }
+  )
+    this.closeDropdown();
+  }
+
+  edit() {
+    this.closeDropdown();
+  }
+  toggleDropdown(index: number) {
+    this.isDropdownOpen = this.isDropdownOpen === index ? null : index;
+  }
+  closeDropdown() {
+    this.isDropdownOpen = null;
+  }
   get paginatedItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.productList.slice(startIndex, startIndex + this.itemsPerPage);

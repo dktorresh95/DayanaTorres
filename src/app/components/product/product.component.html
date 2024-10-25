@@ -13,13 +13,23 @@
                 <th>Fecha de reestructuración</th>
                 <th></th>
             </tr>
-            <tr *ngFor="let product of paginatedItems">
+            <tr *ngFor="let product of paginatedItems; let i = index">
                 <td><img [src]="product.logo"></td>
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_release}}</td>
                 <td>{{product.date_revision}}</td>
-                <td></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" (click)="toggleDropdown(i)">
+                            &#x22EE;
+                        </button>
+                        <div class="dropdown-menu" *ngIf="isDropdownOpen == i">
+                            <a (click)="showConfirm(product.id)">Eliminar</a>
+                            <a (click)="edit()">Editar</a>
+                          </div>
+                    </div>
+                </td>
             </tr>
         </table>
         <div class="pagination">

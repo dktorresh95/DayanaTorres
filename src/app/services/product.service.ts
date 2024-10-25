@@ -7,15 +7,19 @@ import { Product } from '../models/product.model';
 })
 export class ProductService {
 
-  urlApi = 'http://localhost:3002/'
+  urlApi = 'http://localhost:3002/bp/products'
   constructor(private httpClient: HttpClient) { }
 
 
   getproducts() {
-    return this.httpClient.get(this.urlApi + 'bp/products')
+    return this.httpClient.get(this.urlApi);
   }
 
   addProducts(body: Product) {
-    return this.httpClient.post(this.urlApi + 'bp/products', body)
+    return this.httpClient.post(this.urlApi, body);
+  }
+
+  deleteProduct(id: string | undefined) {
+    return this.httpClient.delete(this.urlApi + `/${id}`);
   }
 }
