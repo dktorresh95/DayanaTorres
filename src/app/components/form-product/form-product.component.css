@@ -23,3 +23,8 @@ label, span {
 span.invalid-input {
     color: var(--danger);
 }
+.line {
+    height: 1px;
+    background: var(--border-color);
+    margin: 15px 0px;
+  }

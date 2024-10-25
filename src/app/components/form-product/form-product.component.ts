@@ -36,6 +36,9 @@ export class FormProductComponent implements OnInit {
     )
   }
 
+  /**
+   * Inits form
+   */
   initForm() {
     this.formGroup = this.formBuilder.group({
       id: ['',[ Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
@@ -61,6 +64,11 @@ export class FormProductComponent implements OnInit {
   isValidDate(label: string) {
     return this.formGroup.get(label)?.errors?.['invalidDate'];
   }
+  /**
+   * 
+   * @param dateSelected in calendar
+   * @returns if date is major than current value
+   */
   validateDate(dateSelected: any) {
     const currentDate = new Date();
     const dateInput = new Date(dateSelected.value);

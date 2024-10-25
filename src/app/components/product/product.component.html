@@ -1,6 +1,6 @@
 <div class="container-search">
     <div class="actions">
-        <input type="text" placeholder="Search" (keydown.enter)="search($event)">
+        <input class="input-search" type="text" placeholder="Search" (keydown.enter)="search($event)">
         <button class="button primary-button add" (click)="addProduct()">Agregar</button>
     </div>
     <div class="container-table">
@@ -11,6 +11,7 @@
                 <th>Descripción</th>
                 <th>Fecha de liberación</th>
                 <th>Fecha de reestructuración</th>
+                <th></th>
             </tr>
             <tr *ngFor="let product of paginatedItems">
                 <td><img [src]="product.logo"></td>
@@ -18,6 +19,7 @@
                 <td>{{product.description}}</td>
                 <td>{{product.date_release}}</td>
                 <td>{{product.date_revision}}</td>
+                <td></td>
             </tr>
         </table>
         <div class="pagination">
