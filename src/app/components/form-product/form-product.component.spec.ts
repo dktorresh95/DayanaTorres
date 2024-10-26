@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('FormProductComponent', () => {
   let component: FormProductComponent;
@@ -14,7 +16,13 @@ describe('FormProductComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, ReactiveFormsModule],
       declarations: [FormProductComponent, ModalComponent],
-      providers: [ProductService],
+      providers: [ProductService, 
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: 'Uno' }),
+          },
+        },],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FormProductComponent);

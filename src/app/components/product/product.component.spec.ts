@@ -44,7 +44,7 @@ describe('ProductComponent', () => {
   });
 
   it('should validate edit', () => {
-    component.edit();
+    component.edit('Uno');
     expect(component.isDropdownOpen).toBeNull();
   });
 
