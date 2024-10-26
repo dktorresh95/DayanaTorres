@@ -35,14 +35,15 @@ export class ProductComponent implements OnInit {
    * Get list of products
    */
   getProductList() {
-    this.productService.getproducts().subscribe(
-      (response: ResponseData) => {
+    this.productService.getproducts().subscribe({
+      next:(response: ResponseData) => {
         this.productList = response.data || [];
         this.totalPages = this.getCalculatedPages();
       },
-      error => {
+      error: error => {
         this.showModalInfo(error.message, 'Error')
       }
+    }
     )
   }
 
@@ -50,7 +51,7 @@ export class ProductComponent implements OnInit {
    * Navigate to page of create product
    */
   addProduct() {
-    this.route.navigate(['/create-product'])
+    this.route.navigate(['/product'])
   }
 
   /**
@@ -127,8 +128,9 @@ export class ProductComponent implements OnInit {
     this.closeDropdown();
   }
 
-  edit() {
+  edit(id: string | undefined) {
     this.closeDropdown();
+    this.route.navigate(['/product/editar', id]);
   }
   toggleDropdown(index: number) {
     this.isDropdownOpen = this.isDropdownOpen === index ? null : index;

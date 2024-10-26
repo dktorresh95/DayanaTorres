@@ -53,7 +53,7 @@
                 <button class="button secondary-button" (click)="initForm()">
                     Reiniciar
                 </button>
-                <button class="button primary-button" (click)="addProduct()" [disabled]="formGroup.invalid">
+                <button class="button primary-button" (click)="isEdit ? updateProduct() : addProduct()" [disabled]="formGroup.invalid">
                     Enviar
                 </button>
             </div>

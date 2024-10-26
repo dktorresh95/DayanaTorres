@@ -14,11 +14,16 @@ export class ProductService {
   getproducts() {
     return this.httpClient.get(this.urlApi);
   }
-
+  getproductsById(id: string) {
+    return this.httpClient.get(this.urlApi + `/${id}`);
+  }
   addProducts(body: Product) {
     return this.httpClient.post(this.urlApi, body);
   }
 
+  updateProduct(body: Product, id: string) {
+    return this.httpClient.put(this.urlApi+ `/${id}`, body);
+  }
   deleteProduct(id: string | undefined) {
     return this.httpClient.delete(this.urlApi + `/${id}`);
   }

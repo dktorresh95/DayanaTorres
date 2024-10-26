@@ -26,7 +26,7 @@
                         </button>
                         <div class="dropdown-menu" *ngIf="isDropdownOpen == i">
                             <a (click)="showConfirmModal(product.id)">Eliminar</a>
-                            <a (click)="edit()">Editar</a>
+                            <a (click)="edit(product.id)">Editar</a>
                           </div>
                     </div>
                 </td>
