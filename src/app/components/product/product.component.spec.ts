@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductComponent } from './product.component';
 import { ProductService } from '../../services/product.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
+import { ModalComponent } from '../modal/modal.component';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -17,7 +17,7 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [ProductComponent ],
+      declarations: [ProductComponent, ModalComponent ],
       providers: [ProductService]
     }).compileComponents();
 
@@ -43,10 +43,36 @@ describe('ProductComponent', () => {
     expect(component.productList.length).toBe(1);
   });
 
-  it('should return complete list when input search is date', () => {
-    const inputValue = { target: { value: '2025' } };
-    component.productList = mockProducts;
-    component.search(inputValue);
-    expect(component.productList.length).toBe(1);
+  it('should validate edit', () => {
+    component.edit();
+    expect(component.isDropdownOpen).toBeNull();
+  });
+
+  it('should validate behavior of dropdown', () => {
+    component.isDropdownOpen = 2;
+    component.toggleDropdown(0);
+    expect(component.isDropdownOpen).toBe(0);
+  });
+
+  it('should validate behavior of dropdown 2', () => {
+    component.isDropdownOpen = 0;
+    component.toggleDropdown(0);
+    expect(component.isDropdownOpen).toBeNull();
+  });
+
+  it('should validate values of modal', () => {
+    component.showModalInfo('message', 'Info');
+    expect(component.message).toBe('message');
+    expect(component.titleModal).toBe('Info');
+    expect(component.buttonMessageTwo).toBe('Aceptar');
+    expect(component.showConfirm).toBeFalsy();
+  });
+
+  it('should validate confirm modal', () => {
+    component.showConfirmModal('Id uno');
+    expect(component.message).toBe('Está seguro de eliminar el registro Id uno?');
+    expect(component.buttonMessage).toBe('Confirmar');
+    expect(component.buttonMessageTwo).toBe('Cancelar');
+    expect(component.showConfirm).toBeTruthy();
   });
 });

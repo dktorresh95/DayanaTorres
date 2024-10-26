@@ -3,6 +3,7 @@ import { FormProductComponent } from './form-product.component';
 import { ProductService } from '../../services/product.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from '../modal/modal.component';
 
 describe('FormProductComponent', () => {
   let component: FormProductComponent;
@@ -12,7 +13,7 @@ describe('FormProductComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, ReactiveFormsModule],
-      declarations: [FormProductComponent],
+      declarations: [FormProductComponent, ModalComponent],
       providers: [ProductService],
     }).compileComponents();
 
@@ -32,5 +33,13 @@ describe('FormProductComponent', () => {
     expect(component.formGroup.contains('logo')).toBeTruthy();
     expect(component.formGroup.contains('date_revision')).toBeTruthy();
     expect(component.formGroup.contains('date_release')).toBeTruthy();
+  });
+
+  it('should validate values of modal', () => {
+    component.showModalInfo('message', 'Info');
+    expect(component.message).toBe('message');
+    expect(component.titleModal).toBe('Info');
+    expect(component.buttonMessageTwo).toBe('Aceptar');
+    expect(component.showConfirm).toBeFalsy();
   });
 });
