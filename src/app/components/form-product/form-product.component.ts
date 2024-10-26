@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
-import { Product } from 'src/app/models/product.model';
 import { NgxSpinnerService } from 'ngx-spinner';
-import Swal from 'sweetalert2';
+import { MessageResponse } from 'src/app/models/response.model';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-form-product',
@@ -11,9 +11,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-product.component.css']
 })
 export class FormProductComponent implements OnInit {
+  @ViewChild('modal') modal!: ModalComponent;
 
   formGroup: FormGroup = new FormGroup({});
-
+  titleModal: string = '';
+  message: string = '';
+  buttonMessage: string = '';
+  buttonMessageTwo: string = '';
+  id: string = '';
+  showConfirm: boolean = false;
   constructor(private formBuilder: FormBuilder, private productService: ProductService, private spinner: NgxSpinnerService) {
 
   }
@@ -24,12 +30,8 @@ export class FormProductComponent implements OnInit {
   addProduct() {
     this.spinner.show();
     this.productService.addProducts(this.formGroup.value).subscribe(
-      (res) => {
-        Swal.fire({
-          title: "Información",
-          text: "Se ha añadido correctamente el registro",
-          icon: "success"
-        });
+      (res: MessageResponse) => {
+        this.showModalInfo(res.message, 'Información')
         this.spinner.hide();
         this.initForm();
       }
@@ -73,5 +75,13 @@ export class FormProductComponent implements OnInit {
     const currentDate = new Date();
     const dateInput = new Date(dateSelected.value);
     return dateInput > currentDate ? null : { invalidDate: true };
+  }
+
+  showModalInfo (message: string | undefined, type: string) {
+    this.message = message ? message : '';
+    this.buttonMessageTwo = 'Aceptar';
+    this.titleModal = type;
+    this.showConfirm = false;
+    this.modal.open();
   }
 }

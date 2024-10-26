@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { MessageResponse, ResponseData } from 'src/app/models/response.model';
 import { ProductService } from '../../services/product.service';
 import Swal from 'sweetalert2';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-product',
@@ -11,12 +12,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  @ViewChild('modal') modal!: ModalComponent;
+
   itemsPerPage = 5;
   currentPage = 1;
   productList: Product[] = [];
   totalPages = 0;
   isDropdownOpen: number | null = null;
-
+  titleModal: string = '';
+  message: string = '';
+  buttonMessage: string = '';
+  buttonMessageTwo: string = '';
+  id: string = '';
+  showConfirm: boolean = false;
   constructor(private productService: ProductService, private route: Router) { }
 
   ngOnInit(): void {
@@ -33,11 +41,7 @@ export class ProductComponent implements OnInit {
         this.totalPages = this.getCalculatedPages();
       },
       error => {
-        Swal.fire({
-          title: "Error",
-          text: error,
-          icon: "error"
-        });
+        this.showModalInfo(error.message, 'Error')
       }
     )
   }
@@ -92,40 +96,32 @@ export class ProductComponent implements OnInit {
     return Math.ceil(this.productList.length / this.itemsPerPage);
   }
 
-  showConfirm(id:string | undefined) {
-    Swal.fire({
-      title: "Está seguro de eliminar el registro?",
-      showDenyButton: true,
-      showCancelButton: false,
-      showCloseButton: true,
-      confirmButtonText: "Confirmar",
-      confirmButtonColor: "#eeea05",
-      cancelButtonText: `Cancelar`,
-      cancelButtonColor: "#e3e1e1",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.delete(id)
-      } else if (result.isDismissed) {
-        Swal.close();
-      }
-    });
+  showConfirmModal(id:string | undefined) {
+    this.closeDropdown();
+    this.message = 'Está seguro de eliminar el registro ' + id + '?';
+    this.buttonMessage = 'Confirmar';
+    this.buttonMessageTwo = 'Cancelar';
+    this.titleModal = 'Información';
+    this.showConfirm = true;
+    this.modal.open();
+    this.id = id ? id: '';
   }
 
-  delete(id:string | undefined) {
-    this.productService.deleteProduct(id).subscribe( (res: MessageResponse) => {
-      Swal.fire({
-        title: "Información",
-        text: res.message,
-        icon: "success"
-      });
+  showModalInfo (message: string | undefined, type: string) {
+    this.message = message ? message : '';
+    this.buttonMessageTwo = 'Aceptar';
+    this.titleModal = type;
+    this.showConfirm = false;
+    this.modal.open();
+  }
+
+  delete() {
+    this.productService.deleteProduct(this.id).subscribe( (res: MessageResponse) => {
+      this.showModalInfo(res.message, 'Información')
       this.getProductList();
     },
     err => {
-      Swal.fire({
-        title: "Error",
-        text: err,
-        icon: "error"
-      });
+      this.showModalInfo(err.message, 'Error')
     }
   )
     this.closeDropdown();

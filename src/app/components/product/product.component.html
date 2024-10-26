@@ -25,7 +25,7 @@
                             &#x22EE;
                         </button>
                         <div class="dropdown-menu" *ngIf="isDropdownOpen == i">
-                            <a (click)="showConfirm(product.id)">Eliminar</a>
+                            <a (click)="showConfirmModal(product.id)">Eliminar</a>
                             <a (click)="edit()">Editar</a>
                           </div>
                     </div>
@@ -42,3 +42,5 @@
         </div>
     </div>
 </div>
+
+<app-modal #modal [title]="titleModal" [showConfirm]="showConfirm" [message]="message" [buttonMessage]="buttonMessage" [buttonMessageTwo]="buttonMessageTwo" (actionButton)="delete()"></app-modal>

@@ -1,0 +1,8 @@
+<div class="modal" *ngIf="isOpen" (click)="close()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h1>{{ title }}</h1>
+      <p>{{ message }}</p>
+      <button class="button secondary-button" (click)="close()">{{ buttonMessageTwo }}</button>
+      <button *ngIf="showConfirm" class="button primary-button" (click)="action()">{{ buttonMessage }}</button>
+    </div>
+</div>

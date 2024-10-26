@@ -9,12 +9,14 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    FormProductComponent
+    FormProductComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
