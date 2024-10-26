@@ -51,7 +51,7 @@
             </div>
 
             <div class="group-button">
-                <button class="button secondary-button" (click)="initForm()">
+                <button *ngIf="!isEdit"class="button secondary-button" (click)="initForm()">
                     Reiniciar
                 </button>
                 <button class="button primary-button" (click)="isEdit ? updateProduct() : addProduct()" [disabled]="formGroup.invalid">
