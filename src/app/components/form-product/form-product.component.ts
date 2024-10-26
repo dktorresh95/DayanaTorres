@@ -134,4 +134,19 @@ export class FormProductComponent implements OnInit {
       }
     })
   }
+
+  validateExistence() {
+    if (this.formGroup.get('id')?.value && !this.hasErrorMinLength('id') && !this.hasErrorMaxLength('id')) {
+      this.productService.validateExistence(this.formGroup.get('id')?.value).subscribe( {
+        next: (res) => {
+          if (res) {
+            this.formGroup.get('id')?.setErrors({exist: true});
+          }
+        }, 
+        error: err => {
+          this.showModalInfo(err.message, 'Error')
+        }
+      })
+    }
+  }
 }

@@ -27,4 +27,8 @@ export class ProductService {
   deleteProduct(id: string | undefined) {
     return this.httpClient.delete(this.urlApi + `/${id}`);
   }
+
+  validateExistence(id: string) {
+    return this.httpClient.get(this.urlApi + `/verification/${id}`);
+  }
 }

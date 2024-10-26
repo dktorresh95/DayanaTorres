@@ -6,8 +6,9 @@
             <div class="form-group">
                 <div class="container-input">
                     <label for="id">ID</label>
-                    <input type="text" id="id" formControlName="id">
+                    <input type="text" id="id" formControlName="id" (blur)="validateExistence()">
                     <span  class="invalid-input"  *ngIf="isRequired('id')">Este campo es requerido</span>
+                    <span  class="invalid-input"  *ngIf="formGroup.get('id')?.errors?.['exist']">Este id ya existe</span>
                     <span  class="invalid-input"  *ngIf="hasErrorMinLength('id')">Debe tener al menos 3 caracteres</span>
                     <span  class="invalid-input"  *ngIf="hasErrorMaxLength('id')">No puede tener más de 10 caracteres</span>
                 </div>
