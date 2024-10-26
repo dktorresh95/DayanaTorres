@@ -107,6 +107,10 @@ export class FormProductComponent implements OnInit {
     this.modal.open();
   }
 
+  /**
+   * get product by id
+   * @param id 
+   */
   getById(id: string) {
     this.productService.getproductsById(id).subscribe({
       next: (res: any) => {
@@ -123,6 +127,9 @@ export class FormProductComponent implements OnInit {
     )
   }
 
+  /**
+   * update Product
+   */
   updateProduct() {
     this.productService.updateProduct(this.formGroup.value, this.formGroup.get('id')?.value).subscribe({
       next: (res: MessageResponse) => {
@@ -135,6 +142,9 @@ export class FormProductComponent implements OnInit {
     })
   }
 
+  /**
+   * Validate existence of id viwth blur event
+   */
   validateExistence() {
     if (this.formGroup.get('id')?.value && !this.hasErrorMinLength('id') && !this.hasErrorMaxLength('id')) {
       this.productService.validateExistence(this.formGroup.get('id')?.value).subscribe( {

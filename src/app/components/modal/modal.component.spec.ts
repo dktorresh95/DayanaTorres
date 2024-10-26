@@ -18,4 +18,15 @@ describe('ModalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should expect boolean false to close modal', () => {
+    component.open();
+    component.close();
+    expect(component.isOpen).toBeFalsy();
+  });
+
+  it('should validate isOpen when calls action', () => {
+    component.action();
+    expect(component.isOpen).toBeFalsy();
+  });
 });

@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { Product } from 'src/app/models/product.model';
 
 describe('FormProductComponent', () => {
   let component: FormProductComponent;
@@ -27,6 +28,7 @@ describe('FormProductComponent', () => {
 
     fixture = TestBed.createComponent(FormProductComponent);
     component = fixture.componentInstance;
+    productService = TestBed.inject(ProductService);
     fixture.detectChanges();
   });
 
@@ -49,5 +51,23 @@ describe('FormProductComponent', () => {
     expect(component.titleModal).toBe('Info');
     expect(component.buttonMessageTwo).toBe('Aceptar');
     expect(component.showConfirm).toBeFalsy();
+  });
+
+  it('should validate values of modal', () => {
+
+    const mockProduct:Product = {
+      id: 'Uno',
+      name: 'Name Uno',
+      description: 'Descripcion producto',
+      logo: 'logo',
+      date_release: '2025-10-10',
+      date_revision: '2025-10-25'
+    };
+    jest.spyOn(productService, 'getproductsById').mockReturnValue(of(mockProduct));
+
+    component.getById('Uno');
+    expect(productService.getproductsById).toHaveBeenCalledWith('Uno');
+    expect(component.product).toEqual(mockProduct);
+    expect(component.isEdit).toBeTruthy();
   });
 });
